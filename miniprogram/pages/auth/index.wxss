@@ -1,0 +1,34 @@
+.auth-container {
+  justify-content: center;
+  padding: 40rpx;
+}
+
+.auth-card {
+  width: 100%;
+  padding: 60rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 36rpx;
+  color: var(--text-main);
+  margin-bottom: 40rpx;
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  height: 88rpx;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0 24rpx;
+  margin-bottom: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+.btn {
+  width: 100%;
+}

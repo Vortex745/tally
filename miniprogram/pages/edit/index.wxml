@@ -1,0 +1,127 @@
+<view class="container page-add">
+    <!-- Image section -->
+    <view class="section-card image-section">
+      <view class="section-header">
+        <text class="section-title">附件图片</text>
+        <text class="section-counter">{{images.length}} / {{maxImages}}</text>
+      </view>
+      <view class="image-grid">
+        <block wx:for="{{images}}" wx:key="*this">
+          <view class="image-wrapper">
+            <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}"></image>
+            <view class="image-delete" catchtap="removeImage" data-index="{{index}}">×</view>
+          </view>
+        </block>
+        <view class="image-add-btn" bindtap="chooseImage" wx:if="{{images.length < maxImages}}">
+          <image class="icon-camera-img" src="/images/icons/camera_5541519.png" mode="aspectFit"></image>
+          <text>添加图片</text>
+        </view>
+        <view class="image-placeholder" wx:if="{{images.length < 1}}"></view>
+        <view class="image-placeholder" wx:if="{{images.length < 2}}"></view>
+        <view class="image-placeholder" wx:if="{{images.length < 3}}"></view>
+      </view>
+    </view>
+
+    <!-- Title section -->
+    <view class="section-card name-section">
+      <view class="item-label">订单编号</view>
+      <input class="name-input" placeholder="例：A01" value="{{title}}" bindinput="onTitleInput" placeholder-class="input-ph-bold" />
+    </view>
+
+    <!-- Price & Quantity grid -->
+    <view class="grid-row">
+      <view class="section-card grid-card">
+        <view class="item-label">价格</view>
+        <view class="price-box">
+          <text class="currency">¥</text>
+          <input type="digit" class="price-input" placeholder="0.00" value="{{amount}}" bindinput="onAmountInput" placeholder-class="input-ph-bold" />
+        </view>
+      </view>
+      <view class="section-card grid-card">
+        <view class="item-label">数量</view>
+        <input type="number" class="quantity-input" value="{{quantity}}" bindinput="onQuantityInput" />
+      </view>
+    </view>
+
+    <!-- List options -->
+    <view class="section-card list-section">
+      <view class="list-item">
+        <view class="list-left">
+          <image class="item-icon" src="/images/icons/paw_18039694.png" mode="aspectFit"></image>
+          <text>品种</text>
+        </view>
+        <view class="list-right">
+          <input class="tag-input" placeholder="输入品种" value="{{breed}}" bindinput="onBreedInput" placeholder-class="input-ph" />
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="list-item">
+        <view class="list-left">
+          <image class="item-icon" src="/images/icons/man_13369379.png" mode="aspectFit"></image>
+          <text>性别</text>
+        </view>
+        <view class="list-right">
+          <input class="tag-input" placeholder="输入性别" value="{{gender}}" bindinput="onGenderInput" placeholder-class="input-ph" />
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="list-item">
+        <view class="list-left">
+          <image class="item-icon" src="/images/icons/birthday-cake_113039.png" mode="aspectFit"></image>
+          <text>年龄</text>
+        </view>
+        <view class="list-right">
+          <input class="tag-input" placeholder="输入年龄" value="{{age}}" bindinput="onAgeInput" placeholder-class="input-ph" />
+        </view>
+      </view>
+      <view class="line"></view>
+      
+      <!-- 自定义触发：完全绕开原生 Picker 组件 -->
+      <view class="list-item" bindtap="toggleDatePicker" hover-class="item-hover">
+        <view class="list-left">
+          <image class="item-icon" src="/images/icons/calendar_3856759.png" mode="aspectFit"></image>
+          <text>购入日期</text>
+        </view>
+        <view class="list-right">
+          <text class="val" style="color: #593E2E;">{{date}}</text>
+          <view class="icon-calendar-small"></view>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- Note section -->
+    <view class="section-card note-section">
+      <view class="item-label">备注描述</view>
+      <textarea class="note-textarea" placeholder="输入记录的详细信息..." value="{{note}}" bindinput="onNoteInput" auto-height="{{false}}" placeholder-class="input-ph"></textarea>
+    </view>
+
+    <!-- Save Button in flow -->
+    <view class="submit-wrap">
+      <button class="btn-add" bindtap="save">{{id ? '保存修改' : '添加记录'}}</button>
+    </view>
+
+    <!-- Bottom Spacer -->
+    <view style="height: 100rpx;"></view>
+
+    <!-- 自定义弹窗：底层 Mask + 内容 Panel -->
+    <view class="date-picker-mask" wx:if="{{showCustomPicker}}" bindtap="toggleDatePicker"></view>
+    <view class="date-picker-panel {{showCustomPicker ? 'panel-show' : ''}}">
+      <view class="panel-header">
+        <text class="cancel-btn" bindtap="toggleDatePicker">取消</text>
+        <text class="panel-title">选择日期</text>
+        <text class="confirm-btn" bindtap="confirmDate">确定</text>
+      </view>
+      <picker-view indicator-style="height: 50px;" style="width: 100%; height: 250px;" value="{{pvdValues}}" bindchange="onPickerViewChange">
+        <picker-view-column>
+          <view wx:for="{{years}}" wx:key="*this" style="line-height: 50px; text-align: center;">{{item}}年</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{months}}" wx:key="*this" style="line-height: 50px; text-align: center;">{{item}}月</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{days}}" wx:key="*this" style="line-height: 50px; text-align: center;">{{item}}日</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+</view>

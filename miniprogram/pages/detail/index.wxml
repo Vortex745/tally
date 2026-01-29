@@ -1,0 +1,102 @@
+<view class="container">
+  <!-- 1. Custom Nav Header -->
+  <view class="nav-header" style="padding-top: {{navPaddingTop}}px;">
+    <view class="nav-left">
+      <view class="nav-back" bindtap="onBack">
+        <view class="icon-arrow"></view>
+      </view>
+    </view>
+    <view class="page-title">记录详情</view>
+  </view>
+
+  <scroll-view scroll-y class="detail-scroll" enhanced="{{true}}" show-scrollbar="{{false}}">
+    <!-- 2. Photo Section -->
+    <view class="photo-section">
+      <!-- Removed header elements as requested -->
+    </view>
+    <view class="image-card">
+      <swiper wx:if="{{displayImages.length > 0}}" class="image-swiper" indicator-dots="{{displayImages.length > 1}}" circular>
+        <swiper-item wx:for="{{displayImages}}" wx:key="*this">
+          <image class="main-image" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}"></image>
+        </swiper-item>
+      </swiper>
+      <image wx:else class="placeholder-image" src="/images/icons/camera_5541519.png" mode="aspectFit"></image>
+    </view>
+
+    <!-- 3. Title & Meta Card -->
+    <view class="info-card">
+      <view class="project-label">项目名称</view>
+      <view class="project-title">{{bill.title}}</view>
+
+      <!-- Removed type-icon-box as requested -->
+
+      <view class="meta-row">
+        <view class="meta-col">
+          <view class="meta-label">总金额</view>
+          <view class="meta-val"><text style="font-size: 28rpx;">¥</text>{{bill.amount}}</view>
+        </view>
+        <view class="meta-col">
+          <view class="meta-label">单位数量</view>
+          <view class="meta-val">{{bill.quantity}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 4. Detail Attributes Card -->
+    <view class="info-card">
+      <view class="attr-list">
+        <view class="attr-row">
+          <view class="attr-left">
+            <image class="attr-icon" src="/images/icons/paw_18039694.png"></image>
+            <view class="attr-label">品种</view>
+          </view>
+          <view class="attr-val">{{bill.breed || '未填写'}}</view>
+        </view>
+
+        <view class="attr-row">
+          <view class="attr-left">
+            <image class="attr-icon" src="/images/icons/man_13369379.png"></image>
+            <view class="attr-label">性别</view>
+          </view>
+          <view class="attr-val">{{bill.gender || '常规'}}</view>
+        </view>
+
+        <view class="attr-row">
+          <view class="attr-left">
+            <image class="attr-icon" src="/images/icons/calendar_3856759.png"></image>
+            <view class="attr-label">购入日期</view>
+          </view>
+          <view class="attr-val">{{bill.date}}</view>
+        </view>
+
+        <view class="attr-row">
+          <view class="attr-left">
+            <image class="attr-icon" src="/images/icons/birthday-cake_113039.png"></image>
+            <view class="attr-label">年龄</view>
+          </view>
+          <view class="attr-val">{{bill.age || bill.tags || '未填写'}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 5. Notes Card -->
+    <view class="info-card">
+      <view class="notes-header">
+        <image class="notes-icon" src="/images/icons/u_pencil.png"></image>
+        <view class="notes-title">详细备注</view>
+      </view>
+      <view class="notes-content">
+        <text>{{bill.note || '暂无详细备注信息。建议补充相关细节以便后续查阅。'}}</text>
+      </view>
+    </view>
+    
+    <!-- Bottom Spacer for fixed footer -->
+    <view style="height: 240rpx;"></view>
+  </scroll-view>
+
+  <!-- 6. Footer Actions -->
+  <view class="footer-actions">
+    <view class="btn-action delete" bindtap="delete">删除</view>
+    <view class="btn-action edit" bindtap="edit">编辑</view>
+  </view>
+</view>

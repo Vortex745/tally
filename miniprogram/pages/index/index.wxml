@@ -1,0 +1,84 @@
+<view class="container page-index" bindtap="onPageTap">
+  <scroll-view 
+    scroll-y 
+    class="main-content" 
+    enhanced 
+    show-scrollbar="{{false}}" 
+    scroll-top="{{scrollTop}}" 
+    scroll-with-animation="{{true}}" 
+    bindscroll="onScroll"
+    refresher-enabled="{{true}}"
+    refresher-threshold="{{60}}"
+    refresher-default-style="none"
+    refresher-triggered="{{isRefreshing}}"
+    bindrefresherrefresh="onRefresherRefresh"
+  >
+    <!-- Custom Refresher -->
+    <view slot="refresher" class="custom-refresher">
+      <image class="refresh-icon {{isRefreshing ? 'rotating' : ''}}" src="/images/icons/shopping.png" mode="aspectFit"></image>
+    </view>
+
+    <!-- Activity Trends Card -->
+    <view class="trends-card">
+      <view class="trends-stats">
+        <text class="stats-label">总花销</text>
+        <view class="stats-value">
+          <text class="currency">¥</text>
+          <text class="amount">{{totalAmount}}</text>
+        </view>
+      </view>
+      
+      <view class="trends-title">记录频率</view>
+      
+      <view class="chart-box">
+        <view class="chart-bars">
+          <view wx:for="{{chartData}}" wx:key="day" class="bar-col" bindlongpress="onChartLongPress" data-day="{{item.day}}" data-count="{{item.count}}">
+            <view class="tooltip" wx:if="{{activeDay === item.day}}">
+              <text class="tooltip-text">{{item.count}}笔</text>
+              <view class="tooltip-arrow"></view>
+            </view>
+            <view class="bar-actual {{item.isPeak ? 'peak' : ''}}" style="height: {{item.height}};"></view>
+            <text class="bar-name">{{item.day}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Recent Log Entries Section with Expandable Search -->
+    <view class="section-header-wrap">
+      <view class="section-title">最近记录条目</view>
+      <view class="search-box-mini {{searchExpanded ? 'expanded' : ''}}" catchtap="true">
+        <view class="search-trigger" bindtap="toggleSearch">
+          <image class="search-icon-mini" src="/images/icons/search.png" mode="aspectFit"></image>
+        </view>
+        <input class="search-input-mini {{searchExpanded ? 'visible' : ''}}" placeholder="输入订单编号" value="{{searchKeyword}}" bindinput="onSearchInput" focus="{{searchExpanded}}" placeholder-class="ph-mini" cursor-spacing="20" />
+      </view>
+    </view>
+    
+    <view class="log-entries">
+      <block wx:for="{{bills}}" wx:key="id">
+        <view class="log-card" bindtap="onNoteTap" data-id="{{item.id}}">
+          <view class="log-icon-wrap">
+             <image class="log-icon {{item.isPlaceholder ? 'is-placeholder' : ''}}" src="{{item.displayIcon}}" mode="{{item.isPlaceholder ? 'aspectFit' : 'aspectFill'}}" binderror="onImageError" data-id="{{item.id}}"></image>
+          </view>
+          <view class="log-content">
+            <view class="log-heading">{{item.title}}</view>
+          </view>
+          <view class="log-status-date">
+            <text class="tag-date">{{item.date}}</text>
+          </view>
+        </view>
+      </block>
+      
+      <view wx:if="{{bills.length === 0}}" class="empty-container">
+        <text class="empty-tip">暂无账单，快去记一笔吧~</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Back to Top FAB -->
+  <view class="back-top {{showBackTop ? 'active' : ''}}" bindtap="scrollToTop">
+    <view class="icon-up"></view>
+    <text>顶部</text>
+  </view>
+</view>

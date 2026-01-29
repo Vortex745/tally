@@ -1,0 +1,7 @@
+<view class="container auth-container">
+  <view class="card auth-card">
+    <view class="title">请输入记录码</view>
+    <input class="input" type="number" password bindinput="onInput" placeholder="输入4位验证码" />
+    <view class="btn" bindtap="verify">验证进入</view>
+  </view>
+</view>

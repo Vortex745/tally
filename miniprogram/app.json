@@ -1,0 +1,38 @@
+{
+  "debug": false,
+  "pages": [
+    "pages/index/index",
+    "pages/add/index",
+    "pages/detail/index",
+    "pages/edit/index",
+    "pages/auth/index"
+  ],
+  "window": {
+    "backgroundColor": "#F7F8FA",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "简约记账",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#000000",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "账本",
+        "iconPath": "images/icons/u_home.png",
+        "selectedIconPath": "images/icons/u_fill_home.png"
+      },
+      {
+        "pagePath": "pages/add/index",
+        "text": "记一笔",
+        "iconPath": "images/icons/u_pencil.png",
+        "selectedIconPath": "images/icons/u_fill_pencil.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

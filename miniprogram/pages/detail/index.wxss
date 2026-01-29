@@ -1,0 +1,236 @@
+/* Global */
+.container {
+  height: 100vh;
+  background-color: #FFFBF5;
+  overflow: hidden;
+}
+
+/* 1. Header */
+.nav-header {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+  width: 100vw;
+}
+.nav-left {
+  z-index: 10;
+  padding-left: 20rpx;
+}
+.page-title {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #593E2E;
+  pointer-events: none;
+}
+
+.nav-back {
+  width: 80rpx; height: 80rpx;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+}
+.nav-back .icon-arrow {
+  width: 20rpx; height: 20rpx;
+  border-top: 4rpx solid #593E2E;
+  border-left: 4rpx solid #593E2E;
+  transform: rotate(-45deg);
+  margin-left: 6rpx;
+}
+
+.detail-scroll {
+  height: calc(100vh - 100rpx); /* Use full height minus a bit for safety */
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+/* 2. Photo Section */
+.photo-section {
+  /* Empty container, maybe keep small margin or remove */
+  margin-bottom: 20rpx;
+}
+
+.image-card {
+  background: #ffffff;
+  border-radius: 60rpx;
+  padding: 40rpx;
+  box-shadow: 0 10rpx 40rpx rgba(0,0,0,0.03);
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  height: 500rpx;
+}
+.image-swiper {
+  width: 100%;
+  height: 100%;
+}
+.main-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 40rpx;
+  object-fit: cover;
+}
+.placeholder-image {
+    width: 200rpx;
+    height: 200rpx;
+    opacity: 0.2;
+    margin: 100rpx auto;
+    display: block;
+}
+
+
+/* 3. Title Card */
+.info-card {
+  background: #ffffff;
+  border-radius: 60rpx;
+  padding: 50rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 10rpx 40rpx rgba(0,0,0,0.03);
+  position: relative;
+}
+.project-label {
+  font-size: 24rpx;
+  color: #9D8A82;
+  margin-bottom: 10rpx;
+}
+.project-title {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #593E2E;
+  margin-bottom: 50rpx;
+  line-height: 1.2;
+}
+
+.type-icon-box {
+  position: absolute;
+  top: 50rpx; right: 50rpx;
+  text-align: center;
+}
+.icon-circle {
+  width: 80rpx; height: 80rpx;
+  background: #FEF5E7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10rpx;
+}
+.type-icon { width: 40rpx; height: 40rpx; }
+.type-text { font-size: 20rpx; color: #7A665A; }
+
+.meta-row {
+  display: flex;
+  border-top: 2rpx solid #F5F7F8;
+  padding-top: 40rpx;
+}
+.meta-col {
+  flex: 1;
+  border-right: 2rpx solid #F5F7F8;
+}
+.meta-col:last-child { border: none; padding-left: 40rpx; }
+.meta-label {
+  font-size: 22rpx;
+  color: #9D8A82;
+  margin-bottom: 8rpx;
+}
+.meta-val {
+  font-size: 36rpx; /* Larger number */
+  font-weight: 700;
+  color: #593E2E;
+}
+.meta-unit {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #7A665A;
+  margin-left: 6rpx;
+}
+
+/* 4. Detail Attributes */
+.attr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+.attr-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.attr-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.attr-icon { width: 36rpx; height: 36rpx; opacity: 0.6; }
+.attr-label {
+  font-size: 28rpx;
+  color: #9D8A82;
+}
+.attr-val {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #593E2E;
+}
+
+/* 5. Notes Card */
+.notes-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 30rpx;
+}
+.notes-icon { width: 32rpx; height: 32rpx; }
+.notes-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #9D8A82;
+}
+.notes-content {
+  font-size: 28rpx;
+  color: #7A665A;
+  line-height: 1.8;
+  text-align: justify;
+}
+.highlight {
+  font-weight: 700;
+  color: #593E2E;
+  border-bottom: 2rpx solid #E0E0E0;
+}
+
+/* 6. Footer Actions */
+.footer-actions {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  padding: 40rpx 40rpx 80rpx;
+  background: #fff;
+  display: flex;
+  gap: 30rpx;
+  z-index: 100;
+  box-shadow: 0 -10rpx 40rpx rgba(0,0,0,0.02);
+}
+.btn-action {
+  flex: 1;
+  height: 100rpx;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.btn-action.delete {
+  background: #F2E6D8;
+  color: #7A665A;
+}
+.btn-action.edit {
+  background: #FA9D3B;
+  color: #fff;
+}
